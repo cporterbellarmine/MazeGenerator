@@ -16,22 +16,24 @@ public class MazeGenerator{
     public static void main(String args[]){
         MazeGenerator mazeGenerator = new MazeGenerator();
         int[][] completedBoard = mazeGenerator.generateMazeBlock(10,10);
-        String printMaze = mazeGenerator.printMaze(completedBoard);
-        System.out.println(printMaze);
+        mazeGenerator.printMaze(completedBoard);
 
-        int[][] mazeBlock = mazeGenerator.generateMazeBlock(10,10);
-        int[][] constructedMaze = mazeGenerator.generatePathways(mazeBlock, 10, 10);
-        printMaze = mazeGenerator.printMaze(constructedMaze);
-        System.out.println(printMaze);
+        int[][] mazeBlock = mazeGenerator.generateMazeBlock(20,20);
+        int[][] constructedMaze = mazeGenerator.generatePathways(mazeBlock, 20, 20);
+        mazeGenerator.printMaze(constructedMaze);
     }
 
     public MazeGenerator(){
         
     }//end MazeGenerator
 
-    public String printMaze(int[][] completedBoard){
-        String boardRep = Arrays.deepToString(completedBoard);
-        return boardRep;
+    public void printMaze(int[][] completedBoard){
+        //String boardRep = Arrays.deepToString(completedBoard);
+        int arrayHeight = completedBoard.length;
+        int arrayWidth = completedBoard[0].length;
+        for(int i = 0; i < arrayWidth; i++){
+            System.out.println(Arrays.toString(completedBoard[i]));
+        }
     }
 
     public int[][] generateMazeBlock(int width, int height){
@@ -506,7 +508,7 @@ public class MazeGenerator{
                 Queue<Integer> queue = new LinkedList<Integer>();
                 for(int i = 0; i < height-1; i++){
                     for(int j = 0; j < width-1; j++){
-                        if(mazeBlock[i][j]!=1 && mazeBlock[i][j]!=0){
+                        if(mazeBlock[i][j]!=1 && mazeBlock[i][j]!=0 && (mazeBlock[i][j+1]==0  || mazeBlock[i][j+1]==1|| mazeBlock[i][j-1]==0 || mazeBlock[i][j-1]==1 || mazeBlock[i+1][j] == 0 || mazeBlock[i+1][j] == 1 || mazeBlock[i-1][j]==0 || mazeBlock[i-1][j]==1)){
                             queue.add(mazeBlock[i][j]);
                         }//end if
                     }//end for
@@ -581,6 +583,14 @@ public class MazeGenerator{
                         
                         generateInsidePathways(mazeBlock, nextDirection, width, height, newHeight, newWidth, true);
                     }//end if
+                    }
+                }
+
+                for (int i = 0; i <= height-1; i++){
+                    for (int j = 0; j <= width-1; j++){
+                        if(mazeBlock[i][j] == 0 && mazeBlock[i][j-1] == 0 && mazeBlock[i-1][j] == 0 && mazeBlock[i-1][j-1] == 0){
+                            mazeBlock [i][j] = 1;
+                        }
                     }
                 }
         }catch(StackOverflowError t){
@@ -679,8 +689,7 @@ public class MazeGenerator{
         }
 
         String endDirection;
-        String printMaze = printMaze(mazeBlock);
-        System.out.println(printMaze);
+        printMaze(mazeBlock);
 
         int randomEndDeterminer = rand.nextInt(4);
         System.out.println(randomEndDeterminer);
@@ -751,8 +760,6 @@ public class MazeGenerator{
                 randomEndNode = 0;
         }
 
-        System.out.println(printMaze);
-
         if(startDirection.equals("north")){
             mazeBlock = generateInsidePathways(mazeBlock, startDirection, width, height, 0, randomStartNode, true);
         }else if(startDirection.equals("east")){
@@ -763,7 +770,39 @@ public class MazeGenerator{
             mazeBlock = generateInsidePathways(mazeBlock, startDirection, width, height, randomStartNode, 0, true);
         }
 
+        switch(startDirection){
+            case "north":
+                mazeBlock[0][randomStartNode] = 0;
+                break;
+            case "south":
+                mazeBlock[width-1][randomStartNode] = 0;
+                break;
+            case "east":
+                mazeBlock[randomStartNode][height-1] = 0;
+                break;
+            case "west":
+                mazeBlock[randomStartNode][0] = 0;
+                break;
+            default:
+                randomStartNode = 0;
+        }
 
+        switch(endDirection){
+            case "north":
+                mazeBlock[0][randomEndNode] = 0;
+                break;
+            case "south":
+                mazeBlock[width-1][randomEndNode] = 0;
+                break;
+            case "east":
+                mazeBlock[randomEndNode][height-1] = 0;
+                break;
+            case "west":
+                mazeBlock[randomEndNode][0] = 0;
+                break;
+            default:
+                randomEndNode = 0;
+        }
 
 
 
@@ -789,7 +828,6 @@ public class MazeGenerator{
                         int south = k - 1;
                         int east = j + 1;
                         int west = j - 1;
-
                         
                         if(mazeBlock[j][k] == randomNode){
                             mazeBlock[j][k] = randomEdge;
