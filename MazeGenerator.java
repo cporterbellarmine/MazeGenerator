@@ -48,6 +48,7 @@ public class MazeGenerator{
 
     public int[][] generateInsidePathways(int[][] mazeBlock, String startDirection, int width, int height, int startHeight, int startWidth, boolean begin){
         System.out.println("generate inside pathways start...");
+
         Random rand = new Random();
         int randomDirectionDeterminer = rand.nextInt(3);
         String nextDirection = "null";
@@ -58,8 +59,8 @@ public class MazeGenerator{
         boolean complete;
 
         try{
-            System.out.println("Random Direction Determiner " + randomDirectionDeterminer);
-            System.out.println("startDirection " + startDirection);
+            //System.out.println("Random Direction Determiner " + randomDirectionDeterminer);
+            //System.out.println("startDirection " + startDirection);
             if(startDirection.equals("north")){
                 switch(randomDirectionDeterminer){
                     case(0):
@@ -449,7 +450,7 @@ public class MazeGenerator{
 
                 int queueSize = queue.size();
 
-                System.out.println(queue);
+                //System.out.println(queue);
                 
                 if(queueSize == 0){
                     complete = true;
@@ -466,9 +467,9 @@ public class MazeGenerator{
                         }//end for
                     }//end for
                 }//end else
-                System.out.println(newHeight);
-                System.out.println(newWidth);
-                System.out.println(startDirection);
+                //System.out.println(newHeight);
+                //System.out.println(newWidth);
+                //System.out.println(startDirection);
                 mazeBlock[newHeight][newWidth] = 0;
 
                 
@@ -600,10 +601,10 @@ public class MazeGenerator{
         }
 
         String endDirection;
-        printMaze(mazeBlock);
+        //printMaze(mazeBlock);
 
         int randomEndDeterminer = rand.nextInt(4);
-        System.out.println(randomEndDeterminer);
+        //System.out.println(randomEndDeterminer);
 
         switch(randomEndDeterminer){
             case 0:
