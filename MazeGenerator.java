@@ -167,28 +167,29 @@ public class MazeGenerator{
                             System.out.println("Next direction: " + nextDirection);
                             switch(nextDirection){
                                 case("north"):
-                                    if(startWidth+1 >= 0 && startWidth+1 <= width-1 && startWidth-1 >= 0 && startWidth-1 <= width-1){
-                                        System.out.println("WALLS NORTH");
-                                        mazeBlock[startHeight][startWidth+1] = 1;
-                                        mazeBlock[startHeight][startWidth-1] = 1;
-                                        String printMaze = printMaze(mazeBlock);
-                                        System.out.println(printMaze);
+                                    if(startWidth+1 >= 0 && startWidth+1 <= width-1 && startWidth-1 >= 0 && startWidth-1 <= width-1 && startHeight+1 >= 0 && startHeight+1 <= height-1){
+                                        //System.out.println("WALLS NORTH");
+                                        mazeBlock[startHeight+1][startWidth+1] = 1;
+                                        mazeBlock[startHeight+1][startWidth-1] = 1;
+                                        //String printMaze = printMaze(mazeBlock);
+                                        //System.out.println(printMaze);
                                     }else{
                                         System.out.println("Index Error!");
                                     }
                                     break;
                                 case("east"):
-                                    if(startWidth+1 >= 0 && startWidth+1 <= width-1 && startHeight+1>= 0 && startHeight+1 <= height-1){
-                                        mazeBlock[startHeight][startWidth+1] = 1;
-                                        mazeBlock[startHeight+1][startWidth] = 1;
+                                    if(startWidth+1 >= 0 && startWidth+1 <= width-1 && startHeight+1>= 0 && startHeight+1 <= height-1 && startHeight-1 >= 0 && startHeight-1 <= height-1){
+                                        //mazeBlock[startHeight+1][startWidth] = 1;
+                                        mazeBlock[startHeight-1][startWidth+1] = 1;
+                                        mazeBlock[startHeight+1][startWidth+1] = 1;
                                     }else{
                                         System.out.println("Index Error!");
                                     }
                                     break;
                                 case("west"):
-                                    if(startWidth-1 >= 0 && startWidth-1 <= width-1 && startHeight+1 >= 0 && startHeight+1 <= height-1){
-                                        mazeBlock[startHeight][startWidth-1] = 1;
-                                        mazeBlock[startHeight+1][startWidth] = 1;
+                                    if(startWidth-1 >= 0 && startWidth-1 <= width-1 && startHeight+1 >= 0 && startHeight+1 <= height-1 && startHeight-1 >= 0 && startHeight-1 <= height-1){
+                                        mazeBlock[startHeight-1][startWidth-1] = 1;
+                                        mazeBlock[startHeight+1][startWidth-1] = 1;
                                     }else{
                                         System.out.println("Index Error!");
                                     }
@@ -210,25 +211,26 @@ public class MazeGenerator{
                             System.out.println("Next direction: " + nextDirection);
                             switch(nextDirection){
                                 case("south"):
-                                    if(startWidth+1 >= 0 && startWidth+1 <= width-1 && startWidth-1 >= 0 && startWidth-1 <= width-1){
-                                        mazeBlock[startHeight][startWidth+1] = 1;
-                                        mazeBlock[startHeight][startWidth-1] = 1;
+                                    if(startWidth+1 >= 0 && startWidth+1 <= width-1 && startWidth-1 >= 0 && startWidth-1 <= width-1 && startHeight+1 >= 0 && startHeight+1 <= height-1){
+                                        mazeBlock[startHeight+1][startWidth+1] = 1;
+                                        mazeBlock[startHeight+1][startWidth-1] = 1;
                                     }else{
                                         System.out.println("Index Error!");
                                     }
                                     break;
                                 case("east"):
-                                    if(startWidth+1 >= 0 && startWidth+1 <= width-1 && startHeight+1>= 0 && startHeight+1 <= height-1){
-                                        mazeBlock[startHeight][startWidth+1] = 1;
-                                        mazeBlock[startHeight+1][startWidth] = 1;
+                                    if(startWidth+1 >= 0 && startWidth+1 <= width-1 && startHeight+1>= 0 && startHeight+1 <= height-1 && startHeight-1 >= 0 && startHeight-1 <= height-1){
+                                        //mazeBlock[startHeight+1][startWidth] = 1;
+                                        mazeBlock[startHeight-1][startWidth+1] = 1;
+                                        mazeBlock[startHeight+1][startWidth+1] = 1;
                                     }else{
                                         System.out.println("Index Error!");
                                     }
                                     break;
                                 case("west"):
-                                    if(startWidth-1 >= 0 && startWidth-1 <= width-1 && startHeight+1 >= 0 && startHeight+1 <= height-1){
-                                        mazeBlock[startHeight][startWidth-1] = 1;
-                                        mazeBlock[startHeight+1][startWidth] = 1;
+                                    if(startWidth-1 >= 0 && startWidth-1 <= width-1 && startHeight+1 >= 0 && startHeight+1 <= height-1 && startHeight-1 >= 0 && startHeight-1 <= height-1){
+                                        mazeBlock[startHeight-1][startWidth-1] = 1;
+                                        mazeBlock[startHeight+1][startWidth-1] = 1;
                                     }else{
                                         System.out.println("Index Error!");
                                     }
@@ -250,26 +252,26 @@ public class MazeGenerator{
                             System.out.println("Next direction: " + nextDirection);
                             switch(nextDirection){
                                 case("north"):
-                                    if(startWidth+1 >= 0 && startWidth+1 <= width-1 && startWidth-1 >= 0 && startWidth-1 <= width-1){
-                                        System.out.println("WALLS NORTH");
-                                        mazeBlock[startHeight][startWidth+1] = 1;
-                                        mazeBlock[startHeight][startWidth-1] = 1;
+                                    if(startWidth+1 >= 0 && startWidth+1 <= width-1 && startWidth-1 >= 0 && startWidth-1 <= width-1 && startHeight+1 >= 0 && startHeight+1 <= height-1){
+                                        //System.out.println("WALLS NORTH");
+                                        mazeBlock[startHeight+1][startWidth+1] = 1;
+                                        mazeBlock[startHeight+1][startWidth-1] = 1;
                                     }else{
                                         System.out.println("Index Error!");
                                     }
                                     break;
                                 case("south"):
-                                    if(startWidth+1 >= 0 && startWidth+1 <= width-1 && startWidth-1 >= 0 && startWidth-1 <= width-1){
-                                        mazeBlock[startHeight][startWidth+1] = 1;
-                                        mazeBlock[startHeight][startWidth-1] = 1;
+                                    if(startWidth+1 >= 0 && startWidth+1 <= width-1 && startWidth-1 >= 0 && startWidth-1 <= width-1 && startHeight+1 >= 0 && startHeight+1 <= height-1){
+                                        mazeBlock[startHeight+1][startWidth+1] = 1;
+                                        mazeBlock[startHeight+1][startWidth-1] = 1;
                                     }else{
                                         System.out.println("Index Error!");
                                     }
                                     break;
                                 case("west"):
-                                    if(startWidth-1 >= 0 && startWidth-1 <= width-1 && startHeight+1 >= 0 && startHeight+1 <= height-1){
-                                        mazeBlock[startHeight][startWidth-1] = 1;
-                                        mazeBlock[startHeight+1][startWidth] = 1;
+                                    if(startWidth-1 >= 0 && startWidth-1 <= width-1 && startHeight+1 >= 0 && startHeight+1 <= height-1 && startHeight-1 >= 0 && startHeight-1 <= height-1){
+                                        mazeBlock[startHeight-1][startWidth-1] = 1;
+                                        mazeBlock[startHeight+1][startWidth-1] = 1;
                                     }else{
                                         System.out.println("Index Error!");
                                     }
@@ -290,27 +292,28 @@ public class MazeGenerator{
                             newWidth = startWidth+1;
                             System.out.println("Next direction: " + nextDirection);
                             switch(nextDirection){
-                                    case("north"):
-                                    if(startWidth+1 >= 0 && startWidth+1 <= width-1 && startWidth-1 >= 0 && startWidth-1 <= width-1){
-                                        System.out.println("WALLS NORTH");
-                                        mazeBlock[startHeight][startWidth+1] = 1;
-                                        mazeBlock[startHeight][startWidth-1] = 1;
+                                case("north"):
+                                    if(startWidth+1 >= 0 && startWidth+1 <= width-1 && startWidth-1 >= 0 && startWidth-1 <= width-1 && startHeight+1 >= 0 && startHeight+1 <= height-1){
+                                        //System.out.println("WALLS NORTH");
+                                        mazeBlock[startHeight+1][startWidth+1] = 1;
+                                        mazeBlock[startHeight+1][startWidth-1] = 1;
                                     }else{
                                         System.out.println("Index Error!");
                                     }
                                     break;
                                 case("east"):
-                                    if(startWidth+1 >= 0 && startWidth+1 <= width-1 && startHeight+1>= 0 && startHeight+1 <= height-1){
-                                        mazeBlock[startHeight][startWidth+1] = 1;
-                                        mazeBlock[startHeight+1][startWidth] = 1;
+                                    if(startWidth+1 >= 0 && startWidth+1 <= width-1 && startHeight+1>= 0 && startHeight+1 <= height-1 && startHeight-1 >= 0 && startHeight-1 <= height-1){
+                                        //mazeBlock[startHeight+1][startWidth] = 1;
+                                        mazeBlock[startHeight-1][startWidth+1] = 1;
+                                        mazeBlock[startHeight+1][startWidth+1] = 1;
                                     }else{
                                         System.out.println("Index Error!");
                                     }
                                     break;
                                 case("south"):
-                                    if(startWidth+1 >= 0 && startWidth+1 <= width-1 && startWidth-1 >= 0 && startWidth-1 <= width-1){
-                                        mazeBlock[startHeight][startWidth+1] = 1;
-                                        mazeBlock[startHeight][startWidth-1] = 1;
+                                    if(startWidth+1 >= 0 && startWidth+1 <= width-1 && startWidth-1 >= 0 && startWidth-1 <= width-1 && startHeight+1 >= 0 && startHeight+1 <= height-1){
+                                        mazeBlock[startHeight+1][startWidth+1] = 1;
+                                        mazeBlock[startHeight+1][startWidth-1] = 1;
                                     }else{
                                         System.out.println("Index Error!");
                                     }
@@ -335,25 +338,27 @@ public class MazeGenerator{
                             System.out.println("Next Direction" + nextDirection);
                             switch(nextDirection){
                                 case("north"):
-                                    if(startWidth+1 >= 0 && startWidth+1 <= width-1 && startWidth-1 >= 0 && startWidth-1 <= width-1){
-                                        mazeBlock[startHeight][startWidth+1] = 1;
-                                        mazeBlock[startHeight][startWidth-1] = 1;
+                                    if(startWidth+1 >= 0 && startWidth+1 <= width-1 && startWidth-1 >= 0 && startWidth-1 <= width-1 && startHeight+1 >= 0 && startHeight+1 <= height-1){
+                                        //System.out.println("WALLS NORTH");
+                                        mazeBlock[startHeight+1][startWidth+1] = 1;
+                                        mazeBlock[startHeight+1][startWidth-1] = 1;
                                     }else{
                                         System.out.println("Index Error!");
                                     }
                                     break;
                                 case("east"):
-                                    if(startWidth+1 >= 0 && startWidth+1 <= width-1 && startHeight+1>= 0 && startHeight+1 <= height-1){
-                                        mazeBlock[startHeight][startWidth+1] = 1;
-                                        mazeBlock[startHeight+1][startWidth] = 1;
+                                    if(startWidth+1 >= 0 && startWidth+1 <= width-1 && startHeight+1>= 0 && startHeight+1 <= height-1 && startHeight-1 >= 0 && startHeight-1 <= height-1){
+                                        //mazeBlock[startHeight+1][startWidth] = 1;
+                                        mazeBlock[startHeight-1][startWidth+1] = 1;
+                                        mazeBlock[startHeight+1][startWidth+1] = 1;
                                     }else{
                                         System.out.println("Index Error!");
                                     }
                                     break;
                                 case("west"):
-                                    if(startWidth-1 >= 0 && startWidth-1 <= width-1 && startHeight+1 >= 0 && startHeight+1 <= height-1){
-                                        mazeBlock[startHeight][startWidth-1] = 1;
-                                        mazeBlock[startHeight+1][startWidth] = 1;
+                                    if(startWidth-1 >= 0 && startWidth-1 <= width-1 && startHeight+1 >= 0 && startHeight+1 <= height-1 && startHeight-1 >= 0 && startHeight-1 <= height-1){
+                                        mazeBlock[startHeight-1][startWidth-1] = 1;
+                                        mazeBlock[startHeight+1][startWidth-1] = 1;
                                     }else{
                                         System.out.println("Index Error!");
                                     }
@@ -376,25 +381,26 @@ public class MazeGenerator{
                             //System.out.println("Next Direction" + nextDirection);
                             switch(nextDirection){
                                 case("south"):
-                                    if(startWidth+1 >= 0 && startWidth+1 <= width-1 && startWidth-1 >= 0 && startWidth-1 <= width-1){
-                                        mazeBlock[startHeight][startWidth+1] = 1;
-                                        mazeBlock[startHeight][startWidth-1] = 1;
+                                    if(startWidth+1 >= 0 && startWidth+1 <= width-1 && startWidth-1 >= 0 && startWidth-1 <= width-1 && startHeight+1 >= 0 && startHeight+1 <= height-1){
+                                        mazeBlock[startHeight+1][startWidth+1] = 1;
+                                        mazeBlock[startHeight+1][startWidth-1] = 1;
                                     }else{
                                         System.out.println("Index Error!");
                                     }
                                     break;
                                 case("east"):
-                                    if(startWidth+1 >= 0 && startWidth+1 <= width-1 && startHeight+1>= 0 && startHeight+1 <= height-1){
-                                        mazeBlock[startHeight][startWidth+1] = 1;
-                                        mazeBlock[startHeight+1][startWidth] = 1;
+                                    if(startWidth+1 >= 0 && startWidth+1 <= width-1 && startHeight+1>= 0 && startHeight+1 <= height-1 && startHeight-1 >= 0 && startHeight-1 <= height-1){
+                                        //mazeBlock[startHeight+1][startWidth] = 1;
+                                        mazeBlock[startHeight-1][startWidth+1] = 1;
+                                        mazeBlock[startHeight+1][startWidth+1] = 1;
                                     }else{
                                         System.out.println("Index Error!");
                                     }
                                     break;
                                 case("west"):
-                                    if(startWidth-1 >= 0 && startWidth-1 <= width-1 && startHeight+1 >= 0 && startHeight+1 <= height-1){
-                                        mazeBlock[startHeight][startWidth-1] = 1;
-                                        mazeBlock[startHeight+1][startWidth] = 1;
+                                    if(startWidth-1 >= 0 && startWidth-1 <= width-1 && startHeight+1 >= 0 && startHeight+1 <= height-1 && startHeight-1 >= 0 && startHeight-1 <= height-1){
+                                        mazeBlock[startHeight-1][startWidth-1] = 1;
+                                        mazeBlock[startHeight+1][startWidth-1] = 1;
                                     }else{
                                         System.out.println("Index Error!");
                                     }
@@ -417,26 +423,26 @@ public class MazeGenerator{
                             //System.out.println("Next Direction" + nextDirection);
                             switch(nextDirection){
                                 case("north"):
-                                    if(startWidth+1 >= 0 && startWidth+1 <= width-1 && startWidth-1 >= 0 && startWidth-1 <= width-1){
-                                        System.out.println("WALLS NORTH");
-                                        mazeBlock[startHeight][startWidth+1] = 1;
-                                        mazeBlock[startHeight][startWidth-1] = 1;
+                                    if(startWidth+1 >= 0 && startWidth+1 <= width-1 && startWidth-1 >= 0 && startWidth-1 <= width-1 && startHeight+1 >= 0 && startHeight+1 <= height-1){
+                                        //System.out.println("WALLS NORTH");
+                                        mazeBlock[startHeight+1][startWidth+1] = 1;
+                                        mazeBlock[startHeight+1][startWidth-1] = 1;
                                     }else{
                                         System.out.println("Index Error!");
                                     }
                                     break;
                                 case("south"):
-                                    if(startWidth+1 >= 0 && startWidth+1 <= width-1 && startWidth-1 >= 0 && startWidth-1 <= width-1){
-                                        mazeBlock[startHeight][startWidth+1] = 1;
-                                        mazeBlock[startHeight][startWidth-1] = 1;
+                                    if(startWidth+1 >= 0 && startWidth+1 <= width-1 && startWidth-1 >= 0 && startWidth-1 <= width-1 && startHeight+1 >= 0 && startHeight+1 <= height-1){
+                                        mazeBlock[startHeight+1][startWidth+1] = 1;
+                                        mazeBlock[startHeight+1][startWidth-1] = 1;
                                     }else{
                                         System.out.println("Index Error!");
                                     }
                                     break;
                                 case("west"):
-                                    if(startWidth-1 >= 0 && startWidth-1 <= width-1 && startHeight+1 >= 0 && startHeight+1 <= height-1){
-                                        mazeBlock[startHeight][startWidth-1] = 1;
-                                        mazeBlock[startHeight+1][startWidth] = 1;
+                                    if(startWidth-1 >= 0 && startWidth-1 <= width-1 && startHeight+1 >= 0 && startHeight+1 <= height-1 && startHeight-1 >= 0 && startHeight-1 <= height-1){
+                                        mazeBlock[startHeight-1][startWidth-1] = 1;
+                                        mazeBlock[startHeight+1][startWidth-1] = 1;
                                     }else{
                                         System.out.println("Index Error!");
                                     }
@@ -459,26 +465,27 @@ public class MazeGenerator{
                             //System.out.println("Next Direction" + nextDirection);
                             switch(nextDirection){
                                 case("north"):
-                                    if(startWidth+1 >= 0 && startWidth+1 <= width-1 && startWidth-1 >= 0 && startWidth-1 <= width-1){
-                                        System.out.println("WALLS NORTH");
-                                        mazeBlock[startHeight][startWidth+1] = 1;
-                                        mazeBlock[startHeight][startWidth-1] = 1;
+                                    if(startWidth+1 >= 0 && startWidth+1 <= width-1 && startWidth-1 >= 0 && startWidth-1 <= width-1 && startHeight+1 >= 0 && startHeight+1 <= height-1){
+                                        //System.out.println("WALLS NORTH");
+                                        mazeBlock[startHeight+1][startWidth+1] = 1;
+                                        mazeBlock[startHeight+1][startWidth-1] = 1;
                                     }else{
                                         System.out.println("Index Error!");
                                     }
                                     break;
                                 case("east"):
-                                    if(startWidth+1 >= 0 && startWidth+1 <= width-1 && startHeight+1>= 0 && startHeight+1 <= height-1){
-                                        mazeBlock[startHeight][startWidth+1] = 1;
-                                        mazeBlock[startHeight+1][startWidth] = 1;
+                                    if(startWidth+1 >= 0 && startWidth+1 <= width-1 && startHeight+1>= 0 && startHeight+1 <= height-1 && startHeight-1 >= 0 && startHeight-1 <= height-1){
+                                        //mazeBlock[startHeight+1][startWidth] = 1;
+                                        mazeBlock[startHeight-1][startWidth+1] = 1;
+                                        mazeBlock[startHeight+1][startWidth+1] = 1;
                                     }else{
                                         System.out.println("Index Error!");
                                     }
                                     break;
                                 case("south"):
-                                    if(startWidth+1 >= 0 && startWidth+1 <= width-1 && startWidth-1 >= 0 && startWidth-1 <= width-1){
-                                        mazeBlock[startHeight][startWidth+1] = 1;
-                                        mazeBlock[startHeight][startWidth-1] = 1;
+                                    if(startWidth+1 >= 0 && startWidth+1 <= width-1 && startWidth-1 >= 0 && startWidth-1 <= width-1 && startHeight+1 >= 0 && startHeight+1 <= height-1){
+                                        mazeBlock[startHeight+1][startWidth+1] = 1;
+                                        mazeBlock[startHeight+1][startWidth-1] = 1;
                                     }else{
                                         System.out.println("Index Error!");
                                     }
@@ -528,8 +535,54 @@ public class MazeGenerator{
                 System.out.println(newWidth);
                 System.out.println(startDirection);
                 mazeBlock[newHeight][newWidth] = 0;
-                generateInsidePathways(mazeBlock, nextDirection, width, height, newHeight, newWidth, true);
-            }//end if
+
+                
+                for(int i = 0; i < height; i++){
+                    for(int j = 0; j < width; j++){
+                        if(i+1 >= 0 && i+1 <= height-1 && i-1 >= 0 && i-1 <= height-1 && j+1 >= 0 && j+1 <= width-1 && j-1 >= 0 && j-1<= width-1){
+                            if(mazeBlock[i+1][j] == 1 && mazeBlock[i-1][j] == 1 && mazeBlock[i][j-1] == 1 && mazeBlock[i][j+1] == 1){
+                                if(i+2 >= 0 && i+2 <= height-1){
+                                    if(mazeBlock[i+2][j]==0){
+                                        mazeBlock[i+1][j]=0;
+                                    }
+                                }else if(i-2 >= 0 && i-2 <= height-1){
+                                    if(mazeBlock[i-2][j]==0){
+                                        mazeBlock[i-1][j]=0;
+                                    }
+                                }else if(j-2 >= 0 && j-2 <= width-1){
+                                    if(mazeBlock[i][j-2]==0){
+                                        mazeBlock[i][j-1]=0;
+                                    }
+                                }else if(j+2 >= 0 && j+2 <= width-1){
+                                    if(mazeBlock[i][j+2]==0){
+                                        mazeBlock[i][j+1] = 0;
+                                    }//end if
+                                }//end else
+                            }//end if
+
+                            /**if(i+1 >= 0 && i+1 <= height-1 && j+1 <= 0 && j+1<= width-1){
+                                if(mazeBlock[i][j] == 0 && mazeBlock[i+1][j+1]==0){
+                                    mazeBlock[i+1][j] = 0;
+                                }
+                            }else if(i+1 >= 0 && i+1 <= height-1 && j-1>= 0 && j-1<=width-1){
+                                if(mazeBlock[i][j] == 0 && mazeBlock [i+1][j-1] == 0){
+                                    mazeBlock[i+1][j] = 0;
+                                }
+                            }else if(i-1 >= 0 && i-1 <= height-1 && j+1 >= 0 && j+1 <= width-1){
+                                if(mazeBlock[i][j] == 0 && mazeBlock[i-1][j+1]==0){
+                                    mazeBlock[i-1][j] = 0;
+                                }
+                            }else if(i-1 >= 0 && i-1 <= height-1 && j-1 >= 0 && j-1 <= width-1){
+                                if(mazeBlock[i][j] == 0 && mazeBlock[i-1][j+1]==0){
+                                    mazeBlock[i-1][j] = 0;
+                                }
+                            }*/
+                        }//end if
+                        
+                        generateInsidePathways(mazeBlock, nextDirection, width, height, newHeight, newWidth, true);
+                    }//end if
+                    }
+                }
         }catch(StackOverflowError t){
             System.out.println("Caught "+t);
         }
