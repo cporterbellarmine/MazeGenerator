@@ -28,8 +28,6 @@ public class MazeGenerator{
     }//end MazeGenerator
 
     public void printMaze(int[][] completedBoard){
-        //String boardRep = Arrays.deepToString(completedBoard);
-        int arrayHeight = completedBoard.length;
         int arrayWidth = completedBoard[0].length;
         for(int i = 0; i < arrayWidth; i++){
             System.out.println(Arrays.toString(completedBoard[i]));
@@ -45,7 +43,6 @@ public class MazeGenerator{
                 counter++;
             }
         }
-
         return board;
     }//end generatePathways
 
@@ -58,7 +55,7 @@ public class MazeGenerator{
         int newHeight = 0;
         int newWidth = 0;
         String newStartDirection = "null";
-        boolean complete = false;
+        boolean complete;
 
         try{
             System.out.println("Random Direction Determiner " + randomDirectionDeterminer);
@@ -66,122 +63,71 @@ public class MazeGenerator{
             if(startDirection.equals("north")){
                 switch(randomDirectionDeterminer){
                     case(0):
-                        //System.out.println("SWITCH");
                         nextDirection = "north";
                         break;
                     case(1):
-                        //System.out.println("SWITCH");
                         nextDirection = "east";
                         break;
                     case(2):
-                        //System.out.println("SWITCH");
                         nextDirection = "west";
                         break;
                 }
             }else if(startDirection.equals("east")){
                 switch(randomDirectionDeterminer){
                     case(0):
-                        //System.out.println("SWITCH");
                         nextDirection = "north";
                         break;
                     case(1):
-                        //System.out.println("SWITCH");
                         nextDirection = "east";
                         break;
                     case(2):
-                        //System.out.println("SWITCH");
                         nextDirection = "south";
                         break;
                 }
             }else if(startDirection.equals("south")){
                 switch(randomDirectionDeterminer){
                     case(0):
-                        //System.out.println("SWITCH");
                         nextDirection = "east";
                         break;
                     case(1):
-                        //System.out.println("SWITCH");
                         nextDirection = "south";
                         break;
                     case(2):
-                        //System.out.println("SWITCH");
                         nextDirection = "west";
                         break;
                 }
             }else if(startDirection.equals("west")){
                 switch(randomDirectionDeterminer){
                     case(0):
-                        //System.out.println("SWITCH");
                         nextDirection = "north";
                         break;
                     case(1):
-                        //System.out.println("SWITCH");
                         nextDirection = "south";
                         break;
                     case(2):
-                        //System.out.println("SWITCH");
                         nextDirection = "west";
                         break;
                 }
             }
 
-            System.out.println("Next Direction " + nextDirection);
-
-            /**switch(nextDirection){
-                case("north"):
-                    if(startWidth+1 >= 0 && startWidth+1 <= width-1 && startWidth-1 >= 0 && startWidth-1 <= width-1){
-                        System.out.println("WALLS NORTH");
-                        mazeBlock[startHeight][startWidth+1] = 1;
-                        mazeBlock[startHeight][startWidth-1] = 1;
-                        String printMaze = printMaze(mazeBlock);
-                        System.out.println(printMaze);
-                    }else{
-                        System.out.println("Index Error!");
-                    }
-                case("east"):
-                    if(startWidth+1 >= 0 && startWidth+1 <= width-1 && startHeight+1>= 0 && startHeight+1 <= height-1){
-                        mazeBlock[startHeight][startWidth+1] = 1;
-                        mazeBlock[startHeight+1][startWidth] = 1;
-                    }else{
-                        System.out.println("Index Error!");
-                    }
-                case("south"):
-                    if(startWidth+1 >= 0 && startWidth+1 <= width-1 && startWidth-1 >= 0 && startWidth-1 <= width-1){
-                        mazeBlock[startHeight][startWidth+1] = 1;
-                        mazeBlock[startHeight][startWidth-1] = 1;
-                    }else{
-                        System.out.println("Index Error!");
-                    }
-                case("west"):
-                    if(startWidth-1 >= 0 && startWidth-1 <= width-1 && startHeight+1 >= 0 && startHeight+1 <= height-1){
-                        mazeBlock[startHeight][startWidth-1] = 1;
-                        mazeBlock[startHeight+1][startWidth] = 1;
-                    }else{
-                        System.out.println("Index Error!");
-                    }*/
-            //}
             if(begin){
                 if(startDirection.equals("north")){
                     if(startHeight+1 >= 0 && startHeight+1 <= height-1){
                         if(mazeBlock[startHeight+1][startWidth]!=1 && mazeBlock[startHeight+1][startWidth]!=0){
                             mazeBlock[startHeight+1][startWidth]=0;
                             newHeight = startHeight+1;
-                            System.out.println("Next direction: " + nextDirection);
+                            //System.out.println("Next direction: " + nextDirection);
                             switch(nextDirection){
                                 case("north"):
                                     if(startWidth+1 >= 0 && startWidth+1 <= width-1 && startWidth-1 >= 0 && startWidth-1 <= width-1 && startHeight+1 >= 0 && startHeight+1 <= height-1){
-                                        //System.out.println("WALLS NORTH");
                                         mazeBlock[startHeight+1][startWidth+1] = 1;
                                         mazeBlock[startHeight+1][startWidth-1] = 1;
-                                        //String printMaze = printMaze(mazeBlock);
-                                        //System.out.println(printMaze);
                                     }else{
                                         System.out.println("Index Error!");
                                     }
                                     break;
                                 case("east"):
                                     if(startWidth+1 >= 0 && startWidth+1 <= width-1 && startHeight+1>= 0 && startHeight+1 <= height-1 && startHeight-1 >= 0 && startHeight-1 <= height-1){
-                                        //mazeBlock[startHeight+1][startWidth] = 1;
                                         mazeBlock[startHeight-1][startWidth+1] = 1;
                                         mazeBlock[startHeight+1][startWidth+1] = 1;
                                     }else{
@@ -210,7 +156,7 @@ public class MazeGenerator{
                         if(mazeBlock[startHeight-1][startWidth]!=1&& mazeBlock[startHeight-1][startWidth]!=0){
                             mazeBlock[startHeight-1][startWidth]=0;
                             newHeight = startHeight-1;
-                            System.out.println("Next direction: " + nextDirection);
+                            //System.out.println("Next direction: " + nextDirection);
                             switch(nextDirection){
                                 case("south"):
                                     if(startWidth+1 >= 0 && startWidth+1 <= width-1 && startWidth-1 >= 0 && startWidth-1 <= width-1 && startHeight+1 >= 0 && startHeight+1 <= height-1){
@@ -222,7 +168,6 @@ public class MazeGenerator{
                                     break;
                                 case("east"):
                                     if(startWidth+1 >= 0 && startWidth+1 <= width-1 && startHeight+1>= 0 && startHeight+1 <= height-1 && startHeight-1 >= 0 && startHeight-1 <= height-1){
-                                        //mazeBlock[startHeight+1][startWidth] = 1;
                                         mazeBlock[startHeight-1][startWidth+1] = 1;
                                         mazeBlock[startHeight+1][startWidth+1] = 1;
                                     }else{
@@ -251,11 +196,10 @@ public class MazeGenerator{
                         if(mazeBlock[startHeight][startWidth-1]!=1 && mazeBlock[startHeight][startWidth-1]!=0){
                             mazeBlock[startHeight][startWidth-1]=0;
                             newWidth = startWidth-1;
-                            System.out.println("Next direction: " + nextDirection);
+                            //System.out.println("Next direction: " + nextDirection);
                             switch(nextDirection){
                                 case("north"):
                                     if(startWidth+1 >= 0 && startWidth+1 <= width-1 && startWidth-1 >= 0 && startWidth-1 <= width-1 && startHeight+1 >= 0 && startHeight+1 <= height-1){
-                                        //System.out.println("WALLS NORTH");
                                         mazeBlock[startHeight+1][startWidth+1] = 1;
                                         mazeBlock[startHeight+1][startWidth-1] = 1;
                                     }else{
@@ -292,11 +236,10 @@ public class MazeGenerator{
                         if(mazeBlock[startHeight][startWidth+1]!=1 && mazeBlock[startHeight][startWidth+1]!=0){
                             mazeBlock[startHeight][startWidth+1]=0;
                             newWidth = startWidth+1;
-                            System.out.println("Next direction: " + nextDirection);
+                            //System.out.println("Next direction: " + nextDirection);
                             switch(nextDirection){
                                 case("north"):
                                     if(startWidth+1 >= 0 && startWidth+1 <= width-1 && startWidth-1 >= 0 && startWidth-1 <= width-1 && startHeight+1 >= 0 && startHeight+1 <= height-1){
-                                        //System.out.println("WALLS NORTH");
                                         mazeBlock[startHeight+1][startWidth+1] = 1;
                                         mazeBlock[startHeight+1][startWidth-1] = 1;
                                     }else{
@@ -305,7 +248,6 @@ public class MazeGenerator{
                                     break;
                                 case("east"):
                                     if(startWidth+1 >= 0 && startWidth+1 <= width-1 && startHeight+1>= 0 && startHeight+1 <= height-1 && startHeight-1 >= 0 && startHeight-1 <= height-1){
-                                        //mazeBlock[startHeight+1][startWidth] = 1;
                                         mazeBlock[startHeight-1][startWidth+1] = 1;
                                         mazeBlock[startHeight+1][startWidth+1] = 1;
                                     }else{
@@ -337,11 +279,10 @@ public class MazeGenerator{
                             newStartDirection = "north";
                             mazeBlock[startHeight+1][startWidth]=0;
                             newHeight = startHeight+1;
-                            System.out.println("Next Direction" + nextDirection);
+                            //System.out.println("Next Direction" + nextDirection);
                             switch(nextDirection){
                                 case("north"):
                                     if(startWidth+1 >= 0 && startWidth+1 <= width-1 && startWidth-1 >= 0 && startWidth-1 <= width-1 && startHeight+1 >= 0 && startHeight+1 <= height-1){
-                                        //System.out.println("WALLS NORTH");
                                         mazeBlock[startHeight+1][startWidth+1] = 1;
                                         mazeBlock[startHeight+1][startWidth-1] = 1;
                                     }else{
@@ -350,7 +291,6 @@ public class MazeGenerator{
                                     break;
                                 case("east"):
                                     if(startWidth+1 >= 0 && startWidth+1 <= width-1 && startHeight+1>= 0 && startHeight+1 <= height-1 && startHeight-1 >= 0 && startHeight-1 <= height-1){
-                                        //mazeBlock[startHeight+1][startWidth] = 1;
                                         mazeBlock[startHeight-1][startWidth+1] = 1;
                                         mazeBlock[startHeight+1][startWidth+1] = 1;
                                     }else{
@@ -380,7 +320,6 @@ public class MazeGenerator{
                             newStartDirection = "south";
                             mazeBlock[startHeight-1][startWidth]=0;
                             newHeight = startHeight -1;
-                            //System.out.println("Next Direction" + nextDirection);
                             switch(nextDirection){
                                 case("south"):
                                     if(startWidth+1 >= 0 && startWidth+1 <= width-1 && startWidth-1 >= 0 && startWidth-1 <= width-1 && startHeight+1 >= 0 && startHeight+1 <= height-1){
@@ -392,7 +331,6 @@ public class MazeGenerator{
                                     break;
                                 case("east"):
                                     if(startWidth+1 >= 0 && startWidth+1 <= width-1 && startHeight+1>= 0 && startHeight+1 <= height-1 && startHeight-1 >= 0 && startHeight-1 <= height-1){
-                                        //mazeBlock[startHeight+1][startWidth] = 1;
                                         mazeBlock[startHeight-1][startWidth+1] = 1;
                                         mazeBlock[startHeight+1][startWidth+1] = 1;
                                     }else{
@@ -422,11 +360,9 @@ public class MazeGenerator{
                             newStartDirection = "east";
                             mazeBlock[startHeight][startWidth+1]=0;
                             newWidth = startWidth+1;
-                            //System.out.println("Next Direction" + nextDirection);
                             switch(nextDirection){
                                 case("north"):
                                     if(startWidth+1 >= 0 && startWidth+1 <= width-1 && startWidth-1 >= 0 && startWidth-1 <= width-1 && startHeight+1 >= 0 && startHeight+1 <= height-1){
-                                        //System.out.println("WALLS NORTH");
                                         mazeBlock[startHeight+1][startWidth+1] = 1;
                                         mazeBlock[startHeight+1][startWidth-1] = 1;
                                     }else{
@@ -464,11 +400,9 @@ public class MazeGenerator{
                             newStartDirection = "west";
                             mazeBlock[startHeight][startWidth-1]=0;
                             newWidth = startWidth-1;
-                            //System.out.println("Next Direction" + nextDirection);
                             switch(nextDirection){
                                 case("north"):
                                     if(startWidth+1 >= 0 && startWidth+1 <= width-1 && startWidth-1 >= 0 && startWidth-1 <= width-1 && startHeight+1 >= 0 && startHeight+1 <= height-1){
-                                        //System.out.println("WALLS NORTH");
                                         mazeBlock[startHeight+1][startWidth+1] = 1;
                                         mazeBlock[startHeight+1][startWidth-1] = 1;
                                     }else{
@@ -477,7 +411,6 @@ public class MazeGenerator{
                                     break;
                                 case("east"):
                                     if(startWidth+1 >= 0 && startWidth+1 <= width-1 && startHeight+1>= 0 && startHeight+1 <= height-1 && startHeight-1 >= 0 && startHeight-1 <= height-1){
-                                        //mazeBlock[startHeight+1][startWidth] = 1;
                                         mazeBlock[startHeight-1][startWidth+1] = 1;
                                         mazeBlock[startHeight+1][startWidth+1] = 1;
                                     }else{
@@ -561,26 +494,7 @@ public class MazeGenerator{
                                     }//end if
                                 }//end else
                             }//end if
-
-                            /**if(i+1 >= 0 && i+1 <= height-1 && j+1 <= 0 && j+1<= width-1){
-                                if(mazeBlock[i][j] == 0 && mazeBlock[i+1][j+1]==0){
-                                    mazeBlock[i+1][j] = 0;
-                                }
-                            }else if(i+1 >= 0 && i+1 <= height-1 && j-1>= 0 && j-1<=width-1){
-                                if(mazeBlock[i][j] == 0 && mazeBlock [i+1][j-1] == 0){
-                                    mazeBlock[i+1][j] = 0;
-                                }
-                            }else if(i-1 >= 0 && i-1 <= height-1 && j+1 >= 0 && j+1 <= width-1){
-                                if(mazeBlock[i][j] == 0 && mazeBlock[i-1][j+1]==0){
-                                    mazeBlock[i-1][j] = 0;
-                                }
-                            }else if(i-1 >= 0 && i-1 <= height-1 && j-1 >= 0 && j-1 <= width-1){
-                                if(mazeBlock[i][j] == 0 && mazeBlock[i-1][j+1]==0){
-                                    mazeBlock[i-1][j] = 0;
-                                }
-                            }*/
                         }//end if
-                        
                         generateInsidePathways(mazeBlock, nextDirection, width, height, newHeight, newWidth, true);
                     }//end if
                     }
@@ -619,7 +533,6 @@ public class MazeGenerator{
         String startDirection;
             
         int randomStartDeterminer = rand.nextInt(4);
-        //System.out.println(randomStartDeterminer);
 
         switch(randomStartDeterminer){
             case 0:
@@ -645,41 +558,39 @@ public class MazeGenerator{
 
         switch(startDirection){
             case "north":
-                System.out.println("north");
+                //System.out.println("north");
                 randomStartNode = randomStartDirectionNS;
-                System.out.println(randomStartDirectionNS);
+                //System.out.println(randomStartDirectionNS);
                 nodeNumber = mazeBlock[0][randomStartNode];
-                //System.out.println(nodeNumber);
                 visitedList.add(nodeNumber);
                 mazeBlock[0][randomStartNode] = 0;
                 i++;
                 break;
             case "south":
-                System.out.println("south");
+                //System.out.println("south");
                 randomStartNode = randomStartDirectionNS;
-                System.out.println(randomStartDirectionNS);
+                //System.out.println(randomStartDirectionNS);
                 nodeNumber = mazeBlock[width-1][randomStartNode];
-                //System.out.println(nodeNumber);
                 visitedList.add(nodeNumber);
                 mazeBlock[width-1][randomStartNode] = 0;
                 i++;
                 break;
             case "east":
-                System.out.println("east");
+                //System.out.println("east");
                 randomStartNode = randomStartDirectionEW;
-                System.out.println(randomStartDirectionEW);
+                //System.out.println(randomStartDirectionEW);
                 nodeNumber = mazeBlock[randomStartNode][height-1];
-                System.out.println(nodeNumber);
+                //System.out.println(nodeNumber);
                 visitedList.add(nodeNumber);
                 mazeBlock[randomStartNode][height-1] = 0;
                 i++;
                 break;
             case "west":
-                System.out.println("west");
+                //System.out.println("west");
                 randomStartNode = randomStartDirectionEW;
-                System.out.println(randomStartDirectionEW);
+                //System.out.println(randomStartDirectionEW);
                 nodeNumber = mazeBlock[randomStartNode][0];
-                System.out.println(nodeNumber);
+                //System.out.println(nodeNumber);
                 visitedList.add(nodeNumber);
                 mazeBlock[randomStartNode][0] = 0;
                 i++;
@@ -717,41 +628,37 @@ public class MazeGenerator{
 
         switch(endDirection){
             case "north":
-                System.out.println("north");
+                //System.out.println("north");
                 randomEndNode = randomEndDirectionNS;
-                System.out.println(randomStartDirectionNS);
+                //System.out.println(randomStartDirectionNS);
                 nodeNumber = mazeBlock[0][randomEndNode];
-                //System.out.println(nodeNumber);
                 visitedList.add(nodeNumber);
                 mazeBlock[0][randomEndNode] = 0;
                 i++;
                 break;
             case "south":
-                System.out.println("south");
+                //System.out.println("south");
                 randomEndNode = randomEndDirectionNS;
-                System.out.println(randomStartDirectionNS);
+                //System.out.println(randomStartDirectionNS);
                 nodeNumber = mazeBlock[width-1][randomEndNode];
-                //System.out.println(nodeNumber);
                 visitedList.add(nodeNumber);
                 mazeBlock[width-1][randomEndNode] = 0;
                 i++;
                 break;
             case "east":
-                System.out.println("east");
+                //System.out.println("east");
                 randomEndNode = randomEndDirectionEW;
-                System.out.println(randomStartDirectionEW);
+                //System.out.println(randomStartDirectionEW);
                 nodeNumber = mazeBlock[randomEndNode][height-1];
-                //System.out.println(nodeNumber);
                 visitedList.add(nodeNumber);
                 mazeBlock[randomEndNode][height-1] = 0;
                 i++;
                 break;
             case "west":
-                System.out.println("west");
+                //System.out.println("west");
                 randomEndNode = randomEndDirectionEW;
-                System.out.println(randomStartDirectionEW);
+                //System.out.println(randomStartDirectionEW);
                 nodeNumber = mazeBlock[randomEndNode][0];
-                //System.out.println(nodeNumber);
                 visitedList.add(nodeNumber);
                 mazeBlock[randomEndNode][0] = 0;
                 i++;
@@ -803,43 +710,6 @@ public class MazeGenerator{
             default:
                 randomEndNode = 0;
         }
-
-
-
-        /*while(i < width * height){
-            //System.out.println("i is: " + i);
-            int randomNode = rand.nextInt(100) + 4;
-            //System.out.println("Random Node is: " + randomNode);
-            int randomEdge = rand.nextInt(2);
-            //System.out.println("Random Edge is: " + randomEdge);
-            
-            if(visitedList.contains(randomNode)){
-                continue;
-            }else{
-                for(int j = 0; j < width; j++){
-                    for(int k = 0; k < height; k++){
-                        if(j == 0 || k == 0 || j == width-1 || k == height-1){
-                            visitedList.add(mazeBlock[j][k]);
-                            mazeBlock[j][k] = 1;
-                            i++;
-                        }
-                        
-                        int north = k + 1;
-                        int south = k - 1;
-                        int east = j + 1;
-                        int west = j - 1;
-                        
-                        if(mazeBlock[j][k] == randomNode){
-                            mazeBlock[j][k] = randomEdge;
-                            visitedList.add(randomNode);
-                            i++;
-                            //System.out.println("Visited List: " + visitedList);
-                            //continue;
-                        }
-                    }
-                }
-            }
-        }*/
         return mazeBlock;
     }
 }
