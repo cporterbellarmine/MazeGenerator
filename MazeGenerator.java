@@ -1,6 +1,5 @@
 import java.util.Arrays;
 import java.util.Random;
-import java.util.Stack;
 import java.util.Queue;
 import java.util.LinkedList;
 
@@ -12,6 +11,10 @@ public class MazeGenerator{
     int newBeginNode;
     int currentHeight;
     int currentWidth;
+    int currentStartHeight;
+    int currentStartWidth;
+    int currentEndHeight;
+    int currentEndWidth;
 
     public static void main(String args[]){
         MazeGenerator mazeGenerator = new MazeGenerator();
@@ -562,38 +565,46 @@ public class MazeGenerator{
                 //System.out.println("north");
                 randomStartNode = randomStartDirectionNS;
                 //System.out.println(randomStartDirectionNS);
-                nodeNumber = mazeBlock[0][randomStartNode];
+                setCurrentStartHeight(0);
+                setCurrentStartWidth(randomStartNode);
+                nodeNumber = mazeBlock[this.currentStartHeight][this.currentStartWidth];
                 visitedList.add(nodeNumber);
-                mazeBlock[0][randomStartNode] = 0;
+                mazeBlock[this.currentStartHeight][this.currentStartWidth] = 0;
                 i++;
                 break;
             case "south":
                 //System.out.println("south");
                 randomStartNode = randomStartDirectionNS;
                 //System.out.println(randomStartDirectionNS);
-                nodeNumber = mazeBlock[width-1][randomStartNode];
+                setCurrentStartHeight(height-1);
+                setCurrentStartWidth(randomStartNode);
+                nodeNumber = mazeBlock[this.currentStartHeight][this.currentStartWidth];
                 visitedList.add(nodeNumber);
-                mazeBlock[width-1][randomStartNode] = 0;
+                mazeBlock[this.currentStartHeight][this.currentStartWidth] = 0;
                 i++;
                 break;
             case "east":
                 //System.out.println("east");
                 randomStartNode = randomStartDirectionEW;
                 //System.out.println(randomStartDirectionEW);
-                nodeNumber = mazeBlock[randomStartNode][height-1];
+                setCurrentStartHeight(randomStartNode);
+                setCurrentStartWidth(width-1);
+                nodeNumber = mazeBlock[this.currentStartHeight][this.currentStartWidth];
                 //System.out.println(nodeNumber);
                 visitedList.add(nodeNumber);
-                mazeBlock[randomStartNode][height-1] = 0;
+                mazeBlock[this.currentStartHeight][this.currentStartWidth] = 0;
                 i++;
                 break;
             case "west":
                 //System.out.println("west");
                 randomStartNode = randomStartDirectionEW;
                 //System.out.println(randomStartDirectionEW);
-                nodeNumber = mazeBlock[randomStartNode][0];
+                setCurrentStartHeight(randomStartNode);
+                setCurrentStartWidth(0);
+                nodeNumber = mazeBlock[this.currentStartHeight][this.currentStartWidth];
                 //System.out.println(nodeNumber);
                 visitedList.add(nodeNumber);
-                mazeBlock[randomStartNode][0] = 0;
+                mazeBlock[this.currentStartHeight][this.currentStartWidth] = 0;
                 i++;
                 break;
             default:
@@ -632,36 +643,44 @@ public class MazeGenerator{
                 //System.out.println("north");
                 randomEndNode = randomEndDirectionNS;
                 //System.out.println(randomStartDirectionNS);
-                nodeNumber = mazeBlock[0][randomEndNode];
+                setCurrentEndHeight(0);
+                setCurrentEndWidth(randomEndNode);
+                nodeNumber = mazeBlock[this.currentEndHeight][this.currentEndWidth];
                 visitedList.add(nodeNumber);
-                mazeBlock[0][randomEndNode] = 0;
+                mazeBlock[this.currentEndHeight][this.currentEndWidth] = 0;
                 i++;
                 break;
             case "south":
                 //System.out.println("south");
                 randomEndNode = randomEndDirectionNS;
                 //System.out.println(randomStartDirectionNS);
-                nodeNumber = mazeBlock[width-1][randomEndNode];
+                setCurrentEndHeight(height-1);
+                setCurrentEndWidth(randomEndNode);
+                nodeNumber = mazeBlock[this.currentEndHeight][this.currentEndWidth];
                 visitedList.add(nodeNumber);
-                mazeBlock[width-1][randomEndNode] = 0;
+                mazeBlock[this.currentEndHeight][this.currentEndWidth] = 0;
                 i++;
                 break;
             case "east":
                 //System.out.println("east");
                 randomEndNode = randomEndDirectionEW;
                 //System.out.println(randomStartDirectionEW);
-                nodeNumber = mazeBlock[randomEndNode][height-1];
+                setCurrentEndHeight(randomEndNode);
+                setCurrentEndWidth(width-1);
+                nodeNumber = mazeBlock[this.currentEndHeight][this.currentEndWidth];
                 visitedList.add(nodeNumber);
-                mazeBlock[randomEndNode][height-1] = 0;
+                mazeBlock[this.currentEndHeight][this.currentEndWidth] = 0;
                 i++;
                 break;
             case "west":
                 //System.out.println("west");
                 randomEndNode = randomEndDirectionEW;
                 //System.out.println(randomStartDirectionEW);
-                nodeNumber = mazeBlock[randomEndNode][0];
+                setCurrentEndHeight(randomEndNode);
+                setCurrentEndWidth(0);
+                nodeNumber = mazeBlock[this.currentEndHeight][this.currentEndWidth];
                 visitedList.add(nodeNumber);
-                mazeBlock[randomEndNode][0] = 0;
+                mazeBlock[this.currentEndHeight][this.currentEndWidth] = 0;
                 i++;
                 break;
             default:
@@ -669,27 +688,27 @@ public class MazeGenerator{
         }
 
         if(startDirection.equals("north")){
-            mazeBlock = generateInsidePathways(mazeBlock, startDirection, width, height, 0, randomStartNode, true);
+            mazeBlock = generateInsidePathways(mazeBlock, startDirection, width, height, this.currentStartHeight, this.currentStartWidth, true);
         }else if(startDirection.equals("east")){
-            mazeBlock = generateInsidePathways(mazeBlock, startDirection, width, height, randomStartNode, height-1, true);
+            mazeBlock = generateInsidePathways(mazeBlock, startDirection, width, height, this.currentStartHeight, this.currentStartWidth, true);
         }else if(startDirection.equals("south")){
-            mazeBlock = generateInsidePathways(mazeBlock, startDirection, width, height, width-1, randomStartNode, true);
+            mazeBlock = generateInsidePathways(mazeBlock, startDirection, width, height, this.currentStartHeight, this.currentStartWidth, true);
         }else if(startDirection.equals("west")){
-            mazeBlock = generateInsidePathways(mazeBlock, startDirection, width, height, randomStartNode, 0, true);
+            mazeBlock = generateInsidePathways(mazeBlock, startDirection, width, height, this.currentStartHeight, this.currentStartWidth, true);
         }
 
         switch(startDirection){
             case "north":
-                mazeBlock[0][randomStartNode] = 0;
+                mazeBlock[this.currentStartHeight][this.currentStartWidth] = 0;
                 break;
             case "south":
-                mazeBlock[width-1][randomStartNode] = 0;
+                mazeBlock[this.currentStartHeight][this.currentStartWidth] = 0;
                 break;
             case "east":
-                mazeBlock[randomStartNode][height-1] = 0;
+                mazeBlock[this.currentStartHeight][this.currentStartWidth] = 0;
                 break;
             case "west":
-                mazeBlock[randomStartNode][0] = 0;
+                mazeBlock[this.currentStartHeight][this.currentStartWidth] = 0;
                 break;
             default:
                 randomStartNode = 0;
@@ -697,20 +716,56 @@ public class MazeGenerator{
 
         switch(endDirection){
             case "north":
-                mazeBlock[0][randomEndNode] = 0;
+                mazeBlock[this.currentEndHeight][this.currentEndWidth] = 0;
+                mazeBlock[this.currentEndHeight + 1][this.currentEndWidth] = 0;
                 break;
             case "south":
-                mazeBlock[width-1][randomEndNode] = 0;
+                mazeBlock[this.currentEndHeight][this.currentEndWidth] = 0;
+                mazeBlock[this.currentEndHeight-1][this.currentEndWidth] = 0;
                 break;
             case "east":
-                mazeBlock[randomEndNode][height-1] = 0;
+                mazeBlock[this.currentEndHeight][this.currentEndWidth] = 0;
+                mazeBlock[this.currentEndHeight][this.currentEndWidth-1] = 0;
                 break;
             case "west":
-                mazeBlock[randomEndNode][0] = 0;
+                mazeBlock[this.currentEndHeight][this.currentEndWidth] = 0;
+                mazeBlock[this.currentEndHeight][this.currentEndWidth+1] = 0;
                 break;
             default:
                 randomEndNode = 0;
         }
         return mazeBlock;
+    }
+
+    public void setCurrentStartHeight(int currentStartHeight){
+        this.currentStartHeight = currentStartHeight;
+    }
+
+    public int getCurrentStartHeight(){
+        return currentStartHeight;
+    }
+
+    public void setCurrentStartWidth(int currentStartWidth){
+        this.currentStartWidth = currentStartWidth;
+    }
+
+    public int getCurrentStartWidth(){
+        return currentStartWidth;
+    }
+
+    public void setCurrentEndHeight(int currentEndHeight){
+        this.currentEndHeight = currentEndHeight;
+    }
+
+    public int getCurrentEndHeight(){
+        return currentEndHeight;
+    }
+
+    public void setCurrentEndWidth(int currentEndWidth){
+        this.currentEndWidth = currentEndWidth;
+    }
+
+    public int getCurrentEndWidth(){
+        return currentEndWidth;
     }
 }
