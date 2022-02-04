@@ -7,22 +7,21 @@ import java.util.ArrayList;
 
 public class MazeGenerator{
 
-    int counter;
-    int newBeginNode;
-    int currentHeight;
-    int currentWidth;
-    int currentStartHeight;
-    int currentStartWidth;
-    int currentEndHeight;
-    int currentEndWidth;
+    private int counter;
+    private int currentStartHeight;
+    private int currentStartWidth;
+    private int currentEndHeight;
+    private int currentEndWidth;
+    private int height;
+    private int width;
 
     public static void main(String args[]){
         MazeGenerator mazeGenerator = new MazeGenerator();
-        int[][] completedBoard = mazeGenerator.generateMazeBlock(10,10);
-        mazeGenerator.printMaze(completedBoard);
+        //int[][] completedBoard = mazeGenerator.generateMazeBlock(10,10);
+        //mazeGenerator.printMaze(completedBoard);
 
         int[][] mazeBlock = mazeGenerator.generateMazeBlock(20,20);
-        int[][] constructedMaze = mazeGenerator.generatePathways(mazeBlock, 20, 20);
+        int[][] constructedMaze = mazeGenerator.generatePathways(mazeBlock, mazeGenerator.getHeight(), mazeGenerator.getWidth());
         mazeGenerator.printMaze(constructedMaze);
     }
 
@@ -38,10 +37,12 @@ public class MazeGenerator{
     }
 
     public int[][] generateMazeBlock(int width, int height){
-        int[][] board = new int[width][height];
+        setWidth(width);
+        setHeight(height);
+        int[][] board = new int[height][width];
         counter = 1;
-        for(int i = 0; i < width; i++){
-            for(int j = 0; j < height; j++){
+        for(int i = 0; i < height; i++){
+            for(int j = 0; j < width; j++){
                 board[i][j] = counter + 3;
                 counter++;
             }
@@ -506,8 +507,10 @@ public class MazeGenerator{
 
                 for (int i = 0; i <= height-1; i++){
                     for (int j = 0; j <= width-1; j++){
-                        if(mazeBlock[i][j] == 0 && mazeBlock[i][j-1] == 0 && mazeBlock[i-1][j] == 0 && mazeBlock[i-1][j-1] == 0){
-                            mazeBlock [i][j] = 1;
+                        if(j-1>= 0 && j-1 <= width-1 && i-1 >= 0 && i-1 <= height-1){
+                            if(mazeBlock[i][j] == 0 && mazeBlock[i][j-1] == 0 && mazeBlock[i-1][j] == 0 && mazeBlock[i-1][j-1] == 0){
+                                mazeBlock [i][j] = 1;
+                            }
                         }
                     }
                 }
@@ -520,7 +523,6 @@ public class MazeGenerator{
     }//end generateInsidePathways
 
     public int[][] generatePathways(int[][] mazeBlock, int width, int height){
-        int i = 0;
         ArrayList<Integer> visitedList = new ArrayList<Integer>();
         Random rand = new Random();
 
@@ -529,7 +531,8 @@ public class MazeGenerator{
                 if(j == 0 || k == 0 || j == width-1 || k == height-1){
                     visitedList.add(mazeBlock[j][k]);
                     mazeBlock[j][k] = 1;
-                    i++;
+                }else{
+                    continue;
                 }
             }
         }
@@ -570,7 +573,6 @@ public class MazeGenerator{
                 nodeNumber = mazeBlock[this.currentStartHeight][this.currentStartWidth];
                 visitedList.add(nodeNumber);
                 mazeBlock[this.currentStartHeight][this.currentStartWidth] = 0;
-                i++;
                 break;
             case "south":
                 //System.out.println("south");
@@ -581,7 +583,6 @@ public class MazeGenerator{
                 nodeNumber = mazeBlock[this.currentStartHeight][this.currentStartWidth];
                 visitedList.add(nodeNumber);
                 mazeBlock[this.currentStartHeight][this.currentStartWidth] = 0;
-                i++;
                 break;
             case "east":
                 //System.out.println("east");
@@ -593,7 +594,6 @@ public class MazeGenerator{
                 //System.out.println(nodeNumber);
                 visitedList.add(nodeNumber);
                 mazeBlock[this.currentStartHeight][this.currentStartWidth] = 0;
-                i++;
                 break;
             case "west":
                 //System.out.println("west");
@@ -605,7 +605,6 @@ public class MazeGenerator{
                 //System.out.println(nodeNumber);
                 visitedList.add(nodeNumber);
                 mazeBlock[this.currentStartHeight][this.currentStartWidth] = 0;
-                i++;
                 break;
             default:
                 randomStartNode = 0;
@@ -648,7 +647,6 @@ public class MazeGenerator{
                 nodeNumber = mazeBlock[this.currentEndHeight][this.currentEndWidth];
                 visitedList.add(nodeNumber);
                 mazeBlock[this.currentEndHeight][this.currentEndWidth] = 0;
-                i++;
                 break;
             case "south":
                 //System.out.println("south");
@@ -659,7 +657,6 @@ public class MazeGenerator{
                 nodeNumber = mazeBlock[this.currentEndHeight][this.currentEndWidth];
                 visitedList.add(nodeNumber);
                 mazeBlock[this.currentEndHeight][this.currentEndWidth] = 0;
-                i++;
                 break;
             case "east":
                 //System.out.println("east");
@@ -670,7 +667,6 @@ public class MazeGenerator{
                 nodeNumber = mazeBlock[this.currentEndHeight][this.currentEndWidth];
                 visitedList.add(nodeNumber);
                 mazeBlock[this.currentEndHeight][this.currentEndWidth] = 0;
-                i++;
                 break;
             case "west":
                 //System.out.println("west");
@@ -681,7 +677,6 @@ public class MazeGenerator{
                 nodeNumber = mazeBlock[this.currentEndHeight][this.currentEndWidth];
                 visitedList.add(nodeNumber);
                 mazeBlock[this.currentEndHeight][this.currentEndWidth] = 0;
-                i++;
                 break;
             default:
                 randomEndNode = 0;
@@ -767,5 +762,21 @@ public class MazeGenerator{
 
     public int getCurrentEndWidth(){
         return currentEndWidth;
+    }
+
+    public void setHeight(int height){
+        this.height = height;
+    }
+
+    public int getHeight(){
+        return height;
+    }
+
+    public void setWidth(int width){
+        this.width = width;
+    }
+
+    public int getWidth(){
+        return width;
     }
 }
