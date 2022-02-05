@@ -1,3 +1,6 @@
+import java.util.List;
+import java.util.ArrayList;
+
 public class GraphGenerator {
     private int startHeight;
     private int startWidth;
@@ -5,6 +8,7 @@ public class GraphGenerator {
     private int endWidth;
     private int height;
     private int width;
+    List<Node> nodeList = new ArrayList<Node>();
 
     MazeGenerator mazeGenerator = new MazeGenerator();
     public static void main(String[] args){
@@ -83,24 +87,30 @@ public class GraphGenerator {
             }
         }
 
+        mazeBlock[this.startHeight][this.startWidth]=2;
+        mazeBlock[this.endHeight][this.endWidth]=2;
+
         int counter = 100;
         for(int i = 0; i < this.height; i++){
             for(int j = 0; j < this.width; j++){
                 if(mazeBlock[i][j] == 2 || mazeBlock[i][j]==3){
                     mazeBlock[i][j] = counter;
+                    nodeList.add(setNode(counter, i, j));
                     counter++;
                 }
             }
         }
-
-        mazeBlock[this.startHeight][this.startWidth]=2;
-        mazeBlock[this.endHeight][this.endWidth]=2;
-
+        System.out.println(nodeList);
         return mazeBlock;
         
     }
 
-    
+    public Node setNode(int value, int startHeight, int startWidth){
+        Node newNode = new Node(value, startHeight, startWidth);
+        return newNode;
+    }
+
+
 
     public void setStartHeight(int startHeight){
         this.startHeight = startHeight;

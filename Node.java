@@ -1,10 +1,12 @@
 public class Node {
     private int value;
-    private int weight;
+    private int startHeight;
+    private int startWidth;
 
-    Node(int value, int weight){
+    Node(int value, int startHeight, int startWidth){
         setValue(value);
-        setWeight(weight);
+        setStartHeight(startHeight);
+        setStartWidth(startWidth);
     }
 
     public void setValue(int value){
@@ -15,11 +17,21 @@ public class Node {
         return value;
     }
 
-    public void setWeight(int weight){
-        this.weight = weight;
+    public void setStartHeight(int startHeight){
+        this.startHeight = startHeight;
     }
 
-    public int getWeight(){
-        return weight;
+    public int getStartHeight(){
+        return startHeight;
     }
+
+    public void setStartWidth(int startWidth){
+        this.startWidth = startWidth;
+    }
+
+    public int getStartWidth(){
+        return startWidth;
+    }
+
+
 }
