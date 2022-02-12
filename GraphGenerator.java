@@ -2,7 +2,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
-import java.util.PriorityQueue;
+import java.util.HashMap;
 
 public class GraphGenerator {
     private int startHeight;
@@ -14,9 +14,9 @@ public class GraphGenerator {
     private Node startNode;
     private Node endNode;
 
-    List<Node> nodeList = new ArrayList<Node>();
-    List<Edge> edges = new ArrayList<Edge>();
-    List<List<Node>> adjacencyList = new ArrayList<>();
+    private List<Node> nodeList = new ArrayList<Node>();
+    private List<Edge> edges = new ArrayList<Edge>();
+    private HashMap<Node, List<Node>> adjacencyList = new HashMap<>();
 
     MazeGenerator mazeGenerator = new MazeGenerator();
     public static void main(String[] args){
@@ -74,6 +74,8 @@ public class GraphGenerator {
         mazeGenerator.printMaze(maze);
         //mazeGenerator.printMaze(nodeMaze);
         System.out.println(completeEdgeList.size());
+        System.out.println(graphGenerator.getAdjacencyList());
+        System.out.println(graphGenerator.getAdjacencyList().size());
 
         
 
@@ -204,6 +206,7 @@ public class GraphGenerator {
     public List<Edge> createEdges(int[][] mazeBlock, Node startNode){
         System.out.println("Entering Create Edges");
 
+        List<Node> adjacentNodes = new LinkedList<Node>();
         List<Edge> edgeList = new LinkedList<Edge>();
 
         if(!startNode.getDeadEnd()){
@@ -247,6 +250,7 @@ public class GraphGenerator {
                                 }
                                 continueDirection = false;
                                 endNode = setNode(mazeBlock[currentHeight][startWidth], currentHeight, startWidth, deadEndValue);
+                                adjacentNodes.add(endNode);
                                 Edge newEdgeNorth = new Edge(startNode, endNode, lengthCounter);
                                 edgeList.add(newEdgeNorth);
                                 //System.out.println(edgeList);
@@ -279,6 +283,7 @@ public class GraphGenerator {
                                 }
                                 continueDirection = false;
                                 endNode = setNode(mazeBlock[startHeight][currentWidth], startHeight, currentWidth, deadEndValue);
+                                adjacentNodes.add(endNode);
                                 Edge newEdgeEast = new Edge(startNode, endNode, lengthCounter);
                                 edgeList.add(newEdgeEast);
                                 //System.out.println(edgeList);
@@ -312,6 +317,7 @@ public class GraphGenerator {
                                 }
                                 continueDirection = false;
                                 endNode = setNode(mazeBlock[currentHeight][startWidth], currentHeight, startWidth, deadEndValue);
+                                adjacentNodes.add(endNode);
                                 Edge newEdgeSouth = new Edge(startNode, endNode, lengthCounter);
                                 edgeList.add(newEdgeSouth);
                                 //ystem.out.println(edgeList);
@@ -341,6 +347,7 @@ public class GraphGenerator {
                                 }
                                 continueDirection = false;
                                 endNode = setNode(mazeBlock[startHeight][currentWidth], startHeight, currentWidth, deadEndValue);
+                                adjacentNodes.add(endNode);
                                 Edge newEdgeWest = new Edge(startNode, endNode, lengthCounter);
                                 edgeList.add(newEdgeWest);
                                 //System.out.println(edgeList);
@@ -356,7 +363,7 @@ public class GraphGenerator {
                 }
                 System.out.println(directionQueue.size());
             }
-
+            adjacencyList.put(startNode, adjacentNodes);
             System.out.println("Exiting createEdges");
             return edgeList;
         }else{
@@ -446,6 +453,10 @@ public class GraphGenerator {
             System.out.println("Exiting Check West...");
             return false;
         }
+    }
+
+    public HashMap<Node, List<Node>> getAdjacencyList(){
+        return adjacencyList;
     }
 
     public Edge createEdge(Node beginNode, Node destinationNode, int distance){
