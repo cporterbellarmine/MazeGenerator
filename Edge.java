@@ -1,7 +1,7 @@
 public class Edge {
 
-    private int source; //this will serve to be the source node of the edge
-    private int destination; //this will be the destination node of the edge
+    private Node source; //this will serve to be the source node of the edge
+    private Node destination; //this will be the destination node of the edge
     private int weight; //this will be the weight of the edge
 
     /**
@@ -10,7 +10,7 @@ public class Edge {
      * @param destination
      * @param weight
      */
-    Edge(int source, int destination, int weight){
+    Edge(Node source, Node destination, int weight){
 
         setSource(source);
         setDestination(destination);
@@ -22,7 +22,7 @@ public class Edge {
      * This will set the source node
      * @param source
      */
-    public void setSource(int source){
+    public void setSource(Node source){
         this.source = source;
     }//end setSource
 
@@ -30,7 +30,7 @@ public class Edge {
      * this will get the source node
      * @return
      */
-    public int getSource(){
+    public Node getSource(){
         return source;
     }//end getSource
 
@@ -38,7 +38,7 @@ public class Edge {
      * this will set the destination node of the edge
      * @param destination
      */
-    public void setDestination(int destination){
+    public void setDestination(Node destination){
         this.destination = destination;
     }//end setDestination
 
@@ -46,7 +46,7 @@ public class Edge {
      * this will get the destination node of the edge
      * @return
      */
-    public int getDestination(){
+    public Node getDestination(){
         return destination;
     }//end getDestination
 
@@ -65,4 +65,8 @@ public class Edge {
     public int getWeight(){
         return weight;
     }//end getWeight
+
+    public String toString(){
+        return this.source + ", " + this.destination + ", " + this.weight;
+    }
 }//end Edge

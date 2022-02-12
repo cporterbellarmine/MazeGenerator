@@ -18,7 +18,7 @@ public class Graph {
          * for each edge in edges, find the highest numbered node and get the source and destination nodes.
          */
         for(Edge edge: edges){
-            n = Integer.max(n, Integer.max(edge.getSource(), edge.getDestination()));
+            //n = Integer.max(n, Integer.max(edge.getSource(), edge.getDestination()));
         }
 
         /**
@@ -32,7 +32,7 @@ public class Graph {
          * For all edges, get the edge source and add a new node with the destination and weight
          */
         for(Edge edge: edges){
-            //adjacencyList.get(edge.getSource()).add(new Node(edge.getDestination(), );
+            //adjacencyList.get(edge.getSource()).add(new Node(edge.getSource(), edge.getDestination();
         }
     }
 
